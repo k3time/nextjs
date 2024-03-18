@@ -6,12 +6,12 @@ import { connectToDb } from "./utils";
 import { signIn, signOut } from "./auth";
 import bcrypt from "bcryptjs";
 
-export const addPost = async (prevState,formData) => {
+export const addPost = async (prevState, formData) => {
   // const title = formData.get("title");
   // const desc = formData.get("desc");
   // const slug = formData.get("slug");
 
-  const { title, desc, slug, userId } = Object.fromEntries(formData);
+  const { title, desc, slug, userId, img } = Object.fromEntries(formData);
 
   try {
     connectToDb();
@@ -20,6 +20,7 @@ export const addPost = async (prevState,formData) => {
       desc,
       slug,
       userId,
+      img,
     });
 
     await newPost.save();
@@ -48,7 +49,7 @@ export const deletePost = async (formData) => {
   }
 };
 
-export const addUser = async (prevState,formData) => {
+export const addUser = async (prevState, formData) => {
   const { username, email, password, img } = Object.fromEntries(formData);
 
   try {

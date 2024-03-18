@@ -1,8 +1,10 @@
-import Image from "next/image";
-import styles from "./singlePost.module.css";
-import PostUser from "@/components/postUser/postUser";
 import { Suspense } from "react";
+import { format } from "date-fns";
+import Image from "next/image";
+import { DATE_FORMAT } from "@/lib/constants.js";
+import PostUser from "@/components/postUser/postUser";
 import { getPost } from "@/lib/data";
+import styles from "./singlePost.module.css";
 
 // FETCH DATA WITH AN API
 const getData = async (slug) => {
@@ -53,7 +55,7 @@ const SinglePostPage = async ({ params }) => {
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>
-              {post.createdAt.toString().slice(4, 16)}
+              {format(new Date(post.createdAt), DATE_FORMAT)}
             </span>
           </div>
         </div>
